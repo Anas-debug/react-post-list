@@ -4,11 +4,15 @@ import PostItem from "../components/PostItem";
 
 function PostList() {
   const [postData, setPostData] = useState([]);
+
+  function onDelete(post) {
+    postData.value = postData.value.filter((p) => p.id != post.id);
+  }
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((json) => {
-        console.log(json);
+        // console.log(json);
         setPostData(json);
       });
   }, []);
@@ -18,7 +22,7 @@ function PostList() {
     <div>
       {postData.map((post) => (
         // <h1 key={post.id}>{post.title}</h1>
-        <PostItem key={post.id} post={post} />
+        <PostItem key={post.id} post={post} onDelete={onDelete} />
       ))}
     </div>
   );
