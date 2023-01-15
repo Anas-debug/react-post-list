@@ -6,7 +6,7 @@ function PostList() {
   const [postData, setPostData] = useState([]);
 
   function onDelete(post) {
-    postData.value = postData.value.filter((p) => p.id != post.id);
+    setPostData(postData.filter((p) => p.id != post.id));
   }
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
