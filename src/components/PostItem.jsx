@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function BasicExample({ post }) {
+function PostItem({ post, onDelete = () => {} }) {
   function onDeleteClick(post) {
     if (!window.confirm("Confirm the deletion")) {
       return;
@@ -10,7 +10,7 @@ function BasicExample({ post }) {
       method: "DELETE",
     }).then((res) => {
       if (res.status === 200) {
-        onDelete("delete", post);
+        onDelete(post);
       }
     });
   }
@@ -28,4 +28,4 @@ function BasicExample({ post }) {
   );
 }
 
-export default BasicExample;
+export default PostItem;
